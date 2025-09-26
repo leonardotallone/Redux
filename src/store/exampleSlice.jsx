@@ -3,15 +3,23 @@ import { createSlice } from "@reduxjs/toolkit";
 export const exampleSlice = createSlice({
   name: "example",
   initialState: {
-    value: "OFF",
+    flip: "OFF",
+    numericValue: 0,
   },
   reducers: {
-    toggleState: (state) => {
-      state.value = state.value === "ON" ? "OFF" : "ON";
+    toggleSwitch: (state) => {
+      state.flip = state.flip === "ON" ? "OFF" : "ON";
+    },
+    modifyValue: (state, action) => {
+      if (action.payload === 1) {
+        state.numericValue += 1;
+      } else if (action.payload === -1) {
+        state.numericValue -= 1;
+      }
     },
   },
 });
 
-export const { toggleState } = exampleSlice.actions;
+export const { toggleSwitch, modifyValue } = exampleSlice.actions;
 
 export default exampleSlice.reducer;

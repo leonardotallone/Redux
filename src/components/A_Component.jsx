@@ -1,11 +1,12 @@
 // import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleState } from "../store/exampleSlice";
+import { toggleSwitch, modifyValue } from "../store/ExampleSlice";
 
-const A_Component = () => {
+const ComponentA = () => {
   //   const [state, setState] = useState("OFF");
-  const state = useSelector((state) => state.example.value);
+  const flip = useSelector((state) => state.example.flip);
+  const numericValue = useSelector((state) => state.example.numericValue);
   const dispatch = useDispatch();
 
   //   const handleState = () => {
@@ -15,16 +16,21 @@ const A_Component = () => {
   //       setState("ON");
   //     }
   //   };
-  console.log(state);
+  console.log("FLIP", flip);
+  console.log("NUMERIC VALUE", numericValue);
   return (
     <div>
-      <h1>A_Component</h1>
+      <h1> A Component</h1>
+
+      <button onClick={() => dispatch(modifyValue(1))}>increment</button>
+      <button onClick={() => dispatch(modifyValue(-1))}>Decrease</button>
+      <h1>{numericValue}</h1>
       {/* <button onClick={handleState}>Change State</button> */}
-      <button onClick={() => dispatch(toggleState())}>Change State</button>
-      <h1>{state}</h1>
+      <button onClick={() => dispatch(toggleSwitch())}>Change State</button>
+      <h1>{flip}</h1>
       <Link to="/b_component">Go to B_Component</Link>
     </div>
   );
 };
 
-export default A_Component;
+export default ComponentA;
