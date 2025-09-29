@@ -21,6 +21,7 @@ const ComponentA = () => {
       <h1>{numericValue}</h1>
       <button onClick={() => dispatch(toggleSwitch())}>Change State</button>
       <h1>{flip}</h1>
+      {/* <h1>{String(flip)}</h1> */}
       <button onClick={() => dispatch(fetchAllUsers())}>Get All Users</button>
       <ul>
         {allUsers && allUsers.length > 0 ? (
@@ -33,7 +34,7 @@ const ComponentA = () => {
           <li>No users found</li>
         )}
       </ul>
-      <Link to="/b_component">Go to ===  B_Component</Link>
+      <Link to="/b_component">Go to B Component</Link>
     </div>
   );
 };
